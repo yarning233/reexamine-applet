@@ -1,0 +1,13 @@
+{
+  "miniprogramRoot": "./",
+  "projectname": "adjust",
+  "description": "考研村复试调剂小程序",
+  "appid": "touristappid",
+  "setting": {
+    "urlCheck": true,
+    "es6": false,
+    "postcss": false,
+    "minified": false
+  },
+  "compileType": "miniprogram"
+}

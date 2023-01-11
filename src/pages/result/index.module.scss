@@ -1,0 +1,212 @@
+.contain {
+  background-color: #f5f5f5;
+  height:100vh;
+}
+
+.contentList {
+  width: 100%;
+  background-color: #f5f5f5;
+  padding: 10px 0;
+  box-sizing: border-box;
+  position: relative;
+  z-index: 1;
+}
+
+.contentContain {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.stickyContain {
+  height: 96px!important;
+  overflow: hidden;
+}
+
+.infiniteUl {
+  width: 100%;
+  height: calc(100vh - 126px);
+  padding: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+
+.infiniteLi {
+  margin-top: 20px;
+  font-size: 14px;
+  color: rgba(100, 100, 100, 1);
+  text-align: center;
+  background-color: #fff;
+  border-radius: 15px;
+  padding: 0 8px;
+  box-sizing: border-box;
+
+  .infiniteLiAttr {
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: left;
+    padding-left: 10px;
+    box-sizing: border-box;
+    width: 100%;
+
+    .collegeAttr {
+      font-size: 12px;
+      margin-right: 8px;
+      background-color: $primary-color-end;
+      text-align: center;
+      line-height: 20px;
+      height: 20px;
+      padding: 0 5px;
+      color: #fff;
+      border-radius: 5px;
+      margin: 0 10px 10px 0;
+    }
+  }
+
+  .infiniteLiTitle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 40px;
+    text-align: left;
+    padding: 10px;
+    box-sizing: border-box;
+    width: 100%;
+
+    .infiniteLiTitleContent {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+    }
+
+    .collegeName {
+      font-size: 16px;
+      font-weight: 600;
+      margin-right: 15px;
+    }
+
+    .province {
+      font-size: 12px;
+      float: right;
+      color: $primary-color-end;
+    }
+  }
+
+  .infiniteLiContent {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+
+    .infiniteLiContentLeft {
+      width: 68%;
+      margin-right: 2%;
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+
+      .infiniteLiContentText {
+        font-size: 14px;
+        color: #666;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        width: 100%;
+        padding: 5px;
+        box-sizing: border-box;
+        text-align: left;
+        line-height: 20px;
+      }
+    }
+
+    .infiniteLiContentRight {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      color: #fff;
+      width: 80px;
+      height: 46px;
+      line-height: 20px;
+      background: linear-gradient($primary-color-end, $primary-color);
+      border-radius: 10px;
+      font-size: 12px;
+    }
+  }
+
+  .infiniteLiBottom {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    height: 40px;
+    padding-left: 10px;
+    box-sizing: border-box;
+
+    .yearRange {
+      color: #666;
+      font-size: 12px;
+      margin-right: 20px;
+    }
+
+    .currentYear {
+      padding: 3px 15px;
+      border: 1px solid $primary-color-end;
+      color: #666;
+      border-radius: 15px;
+      font-size: 12px;
+    }
+  }
+}
+
+.collegeCheckContain {
+  width: 90%;
+  margin: 20px auto 0;
+  background-color: #fff;
+  border-radius: 15px;
+  padding: 5px 8px;
+  box-sizing: border-box;
+  height: 150px;
+  overflow: auto;
+}
+
+.collegeAttrCheckBar {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 0 10px;
+  box-sizing: border-box;
+  margin-top: 20px;
+}
+
+.checkboxGroup {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: 12px;
+  flex-wrap: wrap;
+  line-height: 30px;
+  flex: 1;
+  margin-top: 10px;
+}
+
+.checkboxGroupContent {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  flex-direction: column;
+  width: 80%;
+  font-size: 14px;
+  padding-left: 10px;
+  box-sizing: border-box;
+}
+
+.checkbox {
+  margin-right: 6px;
+}

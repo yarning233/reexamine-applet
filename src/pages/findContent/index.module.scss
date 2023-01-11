@@ -1,0 +1,76 @@
+.contentContain {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding-bottom: 110px;
+}
+
+.contentImage {
+  width: 100%;
+  display: block;
+}
+
+.fixBox {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px;
+  box-sizing: border-box;
+  background-color: #fff;
+}
+
+.fixLeft {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
+  flex-wrap: wrap;
+  color: $primary-color;
+  font-size: 12px;
+  text-align: left;
+}
+
+.fixPrice {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-bottom: 15px;
+  width: 100%;
+}
+
+.originalPrice {
+  font-size: 14px;
+  font-weight: bold;
+  margin-right: 15px;
+}
+
+.tagPrice {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.remark {
+  font-size: 12px;
+  color: #666;
+}
+
+.pon {
+  color: $primary-color-end;
+}
+
+.fixRight {
+  width: 80px;
+  height: 80px;
+}
+
+.qrCode {
+  width: 100%;
+  height: 100%!important;
+  display: flex;
+}

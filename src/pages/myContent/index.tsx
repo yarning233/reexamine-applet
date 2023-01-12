@@ -86,6 +86,22 @@ const MyContent = defineComponent({
 			judge()
 		})
 
+		const switchLength = () => {
+			switch (fileList.value.length) {
+				case 0:
+					uploadList.value = ['1', '2']
+					break
+				case 1:
+					uploadList.value = ['1']
+					break
+				case 2:
+					uploadList.value = []
+					break
+				default:
+					break
+			}
+		}
+
 		const chooseImage = async () => {
 			Taro.chooseImage({
 				count: 1,
@@ -114,19 +130,7 @@ const MyContent = defineComponent({
 						success(res) {
 							if (res.statusCode === 200) {
 								fileList.value.push(tempFilePaths[0])
-								switch (fileList.value.length) {
-									case 0:
-										uploadList.value = ['1', '2']
-										break
-									case 1:
-										uploadList.value = ['1']
-										break
-									case 2:
-										uploadList.value = []
-										break
-									default:
-										break
-								}
+								switchLength()
 							}
 						}
 					})
@@ -140,20 +144,7 @@ const MyContent = defineComponent({
 			if (res.code === 200) {
 				res.data[0].imageUrls?.map(img => {
 					fileList.value.push(img)
-
-					switch (fileList.value.length) {
-						case 0:
-							uploadList.value = ['1', '2']
-							break
-						case 1:
-							uploadList.value = ['1']
-							break
-						case 2:
-							uploadList.value = []
-							break
-						default:
-							break
-					}
+					switchLength()
 				})
 			}
 		}

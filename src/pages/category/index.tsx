@@ -136,14 +136,10 @@ const Category = defineComponent({
 		const customHasMore = ref<boolean>(true)
 
 		const resetChange = () => {
-			currentPage.value = 0
-			customList.value = []
 			autoQuery()
 		}
 
 		const search = () => {
-			currentPage.value = 0
-			customList.value = []
 			autoQuery()
 		}
 

@@ -23,8 +23,10 @@ export interface ResultType {
 	directionCode: string,
 	directionName: string,
 	learningStyle: string,
-	adjustQuota: string,
-	yearsRange: string[]
+	admissionsNumberPeople: string,
+	admissionMinimumScore: string,
+	admissionHighestScore: string,
+	admissionRecommendedScore: string
 }
 
 export interface FirstLevelType {

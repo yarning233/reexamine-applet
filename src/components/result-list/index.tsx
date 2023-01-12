@@ -13,7 +13,7 @@ const ResultList = defineComponent({
 		return () => (
 			<>
 				{
-					props.customList.length >0 ? props.customList.map(result => {
+					props.customList.length >0 ? props.customList.map(result  => {
 						return <li class={styles.infiniteLi}>
 							<view class={styles.infiniteLiTitle}>
 								<view class={styles.infiniteLiTitleContent}>
@@ -34,10 +34,13 @@ const ResultList = defineComponent({
 									<view
 										class={styles.infiniteLiContentText}>{'研究方向：(' + result.directionCode + ')' + result.directionName}</view>
 									<view class={styles.infiniteLiContentText}>{'学习方式：' + result.learningStyle}</view>
+									<view class={styles.infiniteLiContentText}>{'录取最高分：' + result.admissionHighestScore}</view>
+									<view class={styles.infiniteLiContentText}>{'录取最低分：' + result.admissionMinimumScore}</view>
+									<view class={styles.infiniteLiContentText}>{'建议分数：' + result.admissionRecommendedScore}</view>
 								</view>
 								<view class={styles.infiniteLiContentRight}>
-									<view>调剂名额</view>
-									<view>{result.adjustQuota}</view>
+									<view>录取人数</view>
+									<view>{result.admissionsNumberPeople}</view>
 								</view>
 							</view>
 							<view class={styles.infiniteLiBottom}>

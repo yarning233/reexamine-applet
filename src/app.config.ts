@@ -18,7 +18,7 @@ export default defineAppConfig({
   },
   tabBar: {
     color: '#666',
-    selectedColor: '#f4ea2a',
+    selectedColor: '#158AD2',
     position: 'bottom',
     list: [
       {
@@ -31,7 +31,7 @@ export default defineAppConfig({
         pagePath: 'pages/result/index',
         iconPath: './assets/images/ping.png',
         selectedIconPath: './assets/images/ping-active.png',
-        text: '调剂'
+        text: '复试'
       },
       {
         pagePath: 'pages/find/index',

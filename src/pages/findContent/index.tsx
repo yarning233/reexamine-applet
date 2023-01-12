@@ -49,7 +49,7 @@ const FindContent = defineComponent({
 							</nut-tag>
 						</view>
 						<view class={ styles.remark }>
-							长按识别二维码打开“小鹅通”<b class={ styles.pon }>领券</b>购买
+							长按识别右侧二维码, <b class={ styles.pon }>领券</b>购买
 						</view>
 					</view>
 					<view class={ styles.fixRight }>

@@ -2,7 +2,7 @@
     "miniprogramRoot": "dist/",
     "projectname": "adjust",
     "description": "考研村复试调剂小程序",
-    "appid": "wx66af19849b2c8184",
+    "appid": "wxa8c4922c4d0d307b",
     "setting": {
         "urlCheck": true,
         "es6": true,

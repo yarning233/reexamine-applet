@@ -6,106 +6,39 @@ import DataChart from "../../components/data-chart"
 import { ChartQueryType } from '../../types/adjust/index'
 import {queryAdjustList, scoreOverTheYears} from '../../api/adjust'
 import ECanvas from '../../components/ec-canvas/index'
-import { useAuth } from '../../hooks/useAuth'
-import { AuthType } from '../../types/auth'
-import useToast from '../../utils/useToast'
 import judge from './../../hooks/useJudge'
+import { state, authState, getUserProfile, getPhoneNumber } from '../../hooks/index/useState'
+import { years } from '../../hooks/useYears'
+import {
+	goCollegePage,
+	goCategoryPage,
+	goSearchResultPage,
+	goMyContentPage,
+	goAdvancePage
+} from '../../hooks/index/useNavigate'
+import {
+	chartRef,
+	majorChartRef,
+	scoreChartRef,
+	collegeOption,
+	collegeCount,
+	collegeData,
+	majorOption,
+	majorDataCount,
+	majorData,
+	scoreOption,
+	scoreLineYearData,
+	scoreLineValueData
+} from '../../hooks/index/useChart'
 
 export default {
 	name: 'Index',
 	components: { DataChart, ECanvas },
 	setup() {
-		const state = reactive<{
-			tab11value: string,
-			currentYear: string,
-			pieChartType: string
-		}>({
-			tab11value: '1',
-			currentYear: '2022',
-			pieChartType: '0'
-		})
-
-		const authState = reactive<AuthType>({
-			code: '',
-			avatarUrl: Taro.getStorageSync('avatarUrl'),
-			nickName: Taro.getStorageSync('nickName'),
-			openId: Taro.getStorageSync('openId'),
-			phone: Taro.getStorageSync('phone'),
-			overlayShow: false
-		})
-
-		const {
-			getUserProfile,
-			getPhoneNumber,
-			judgeUserInfo
-		} = useAuth(authState)
-
-		const years = ref<string[]>(['2023', '2022', '2021', '2020', '2019', '2018'])
-
-		const goCollegePage = () => {
-			const examineType = Taro.getStorageSync('examineType')
-			
-			if (examineType === '0' || examineType === '2' || !examineType) {
-				useToast('您尚未解锁全站会员')
-			} else {
-				Taro.navigateTo({
-					url: '/pages/college/index'
-				})
-			}
-		}
-
-		const goCategoryPage = () => {
-			const examineType = Taro.getStorageSync('examineType')
-
-			if (examineType === '0' || examineType === '2' || !examineType) {
-				useToast('您尚未解锁全站会员')
-			} else {
-				Taro.navigateTo({
-					url: '/pages/category/index'
-				})
-			}
-		}
-
-		const goSearchResultPage = () => {
-			const examineType = Taro.getStorageSync('examineType')
-
-			if (examineType === '0' || examineType === '2' || !examineType) {
-				useToast('您尚未解锁全站会员')
-			} else {
-				Taro.switchTab({
-					url: '/pages/result/index'
-				})
-			}
-		}
-
-		const goMyContentPage = () => {
-			const res = judgeUserInfo()
-			if (res) {
-				Taro.navigateTo({
-					url: '/pages/myContent/index'
-				})
-			}
-		}
-
 		watch(() => state.tab11value, () => {
 			state.currentYear = years.value[state.tab11value]
 			queryAdjustChartData()
 		})
-
-		// const collegeChartTotal = ref<number>(0)
-		// let collegeChartData = [] as ({name: string, value: number}[])
-		const chartRef = ref()
-		const majorChartRef = ref()
-		const scoreChartRef = ref()
-
-		const collegeOption = ref()
-
-		const majorOption = ref()
-
-		let scoreLineYearData = [] as string[]
-		let scoreLineValueData = [] as number[]
-
-		const scoreOption = ref()
 
 		const queryAdjustChartData = async () => {
 			const res = await queryAdjustList({
@@ -118,43 +51,46 @@ export default {
 					if (res.data.length !== 0) {
 						const { count, nineHundred, twoEleven, initiative, selfLineation } = res.data[0]
 
+						collegeCount.value = count
+						collegeData.value = [
+							{
+								name: '985',
+								value: parseInt(nineHundred)
+							},
+							{
+								name: '211',
+								value: parseInt(twoEleven)
+							},
+							{
+								name: '双一流',
+								value: parseInt(initiative)
+							},
+							{
+								name: '自划线',
+								value: parseInt(selfLineation)
+							}
+						]
+
 						collegeOption.value = {
 							title: {
-								text: `全国一共有 ${ count ? count : 0 } + 所院校参与调剂`,
+								text: `全国一共有 ${ collegeCount.value ? collegeCount.value : 0 } + 所院校参与复试`,
 								left: 'center'
 							},
 							tooltip: {
 								trigger: 'item'
 							},
 							color: [
-								"#5470c6",
-								"#91cc75",
-								"#fac858",
-								"#ee6666"
+								'#158AD2',
+								'#69BFFF',
+								'#50ADA3',
+								'#00DEAE'
 							],
 							series: [
 								{
 									name: '院校图表',
 									type: 'pie',
 									radius: '50%',
-									data: [
-										{
-											name: '985',
-											value: parseInt(nineHundred)
-										},
-										{
-											name: '211',
-											value: parseInt(twoEleven)
-										},
-										{
-											name: '双一流',
-											value: parseInt(initiative)
-										},
-										{
-											name: '自划线',
-											value: parseInt(selfLineation)
-										}
-									],
+									data: collegeData.value,
 									emphasis: {
 										itemStyle: {
 											shadowBlur: 10,
@@ -169,33 +105,30 @@ export default {
 						chartRef.value.init(collegeOption.value)
 					}
 				} else {
-					const majorData =  res.data.map(item => {
+					majorData.value =  res.data.map(item => {
 						return {name: item.categoryName, value: item.majorcount}
 					})
-
-					let majorDataCount = 0
 					res.data.map((item) => {
-						majorDataCount += item.majorcount
+						majorDataCount.value += item.majorcount
 					})
 
 					majorOption.value = {
 						title: {
-							text: `全国一共有 ${ majorDataCount ? majorDataCount : 0  } + 专业参与调剂`,
+							text: `全国一共有 ${ majorDataCount ? majorDataCount : 0  } + 专业参与复试`,
 							left: 'center'
 						},
 						tooltip: {
 							trigger: 'item'
 						},
 						color: [
-							'#5470c6',
-							'#91cc75',
-							'#fac858',
-							'#ee6666',
-							'#73c0de',
-							'#3ba272',
-							'#fc8452',
-							'#9a60b4',
-							'#ea7ccc'
+							'#158AD2',
+							'#E34890',
+							'#37C190',
+							'#00D9DB',
+							'#158AD2',
+							'#A94BA0',
+							'#C8628C',
+							'#00DEAE'
 						],
 						series: [
 							{
@@ -223,37 +156,29 @@ export default {
 			const res = await scoreOverTheYears()
 
 			if (res.code === 200) {
-				scoreLineYearData = res.data.map(item => item.particularYear)
-				scoreLineValueData = res.data.map(item => item.fractionalLine)
+				scoreLineYearData.value = res.data.map(item => item.particularYear)
+				scoreLineValueData.value = res.data.map(item => item.fractionalLine)
 
 				scoreOption.value = {
 					xAxis: {
 						type: 'category',
-							data: scoreLineYearData
+						boundaryGap: false,
+						data: scoreLineYearData
 					},
 					yAxis: {
 						type: 'value'
 					},
-					color: 'orange',
+					color: 'darkcyan',
 					series: [
 						{
 							data: scoreLineValueData,
-							type: 'line',
-							backgroundStyle: {
-								color: 'rgba(180, 180, 180, 0.2)'
-							}
+							type: 'line'
 						}
 					]
 				}
 
 				scoreChartRef.value.init(scoreOption.value)
 			}
-		}
-
-		const goAdvancePage = () => {
-			Taro.navigateTo({
-				url: '/pages/advance/index'
-			})
 		}
 
 		onMounted(() => {
@@ -266,15 +191,17 @@ export default {
 					}
 				}
 			})
-			queryAdjustChartData()
-			queryScoreLine()
-			judge()
+			Promise.all([
+				queryAdjustChartData(),
+				queryScoreLine(),
+				judge()
+			])
 		})
 
 		return () => (
 			<view class={styles.container}>
 				<view class={styles.header}>
-					<span class={styles.headerLogo}>NEWS</span> 2023 考研调剂系统正式开启!
+					<span class={styles.headerLogo}>NEWS</span> 2023 考研复试系统正式开启!
 				</view>
 
 				<view class={styles.vipBox}>

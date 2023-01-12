@@ -9,7 +9,7 @@ interface ParamsType {
 
 export const wxLogin = (params: ParamsType) => {
 	return request<ParamsType>({
-		url: `wx/wxuser/login`,
+		url: `api/wechatuser/login`,
 		method: 'POST',
 		header: {
 			'Content-type': 'application/json'
@@ -20,7 +20,7 @@ export const wxLogin = (params: ParamsType) => {
 
 export const getPhone = (code: string, openId: string) => {
 	return request({
-		url: `api/personal/getPhone?code=${code}&openId=${openId}`,
+		url: `api/personalStudentInformation/getPhoneLogin?code=${code}&openId=${openId}`,
 		method: 'GET',
 		header: {
 			'Content-type': 'application/json'

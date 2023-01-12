@@ -32,7 +32,7 @@ const My = defineComponent({
 			}
 		}
 
-		const tmplId = 'H8G5uBUG_r9_wUCZHRZQCmtItPwavYfMxeVWY0X369s'
+		const tmplId = '70c8uXliww8ndB4b4Vx5VU6dUqJuPayhKGB3xpdxGo4'
 		const subscribed = ref<boolean>(false)
 		const goNotify = () => {
 			const res = judgeUserInfo()

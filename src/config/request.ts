@@ -15,7 +15,8 @@ interface ResponseType<T> {
 	data: T
 }
 
-const baseURL: string = 'https://liebianapi.kaoyancun.com/'
+// const baseURL: string = 'https://liebianapi.kaoyancun.com/'
+const baseURL: string = 'https://585le88844.zicp.fun/'
 
 const request = <T = any, U = any>(requestParams: RequestType<T>): Promise<ResponseType<U>> => {
 	const { url, method, header, data } = requestParams

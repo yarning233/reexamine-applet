@@ -87,7 +87,11 @@ const My = defineComponent({
 						}
 					</view>
 
-					<nut-button type="primary" onClick={ getUserProfile }>授权获取个人信息</nut-button>
+					{
+						!Taro.getStorageSync('openId') ?
+							<nut-button type="primary" onClick={ getUserProfile }>授权获取个人信息</nut-button> :
+							<nut-button type="primary">信息已同步</nut-button>
+					}
 
 					<nut-overlay visible={state.overlayShow} zIndex={2000} closeOnClickOverlay={false}>
 						<view class={ styles.wrapper }>

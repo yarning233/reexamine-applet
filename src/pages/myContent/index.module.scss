@@ -112,3 +112,24 @@
   height: 100%;
   object-fit: cover;
 }
+
+.zxPopup {
+  padding: 20px 20px 10px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.zxTitle {
+  font-size: 14px;
+  width: 48%;
+  line-height: 25px;
+}
+
+.zxImg {
+  display: flex;
+  width: 150px;
+  height: 150px;
+  margin: 10px 0;
+}

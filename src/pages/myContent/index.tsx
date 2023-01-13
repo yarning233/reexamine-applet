@@ -9,6 +9,8 @@ import judge from '../../hooks/useJudge'
 const MyContent = defineComponent({
 	setup() {
 		const gif = 'https://kaoyancun.oss-cn-hangzhou.aliyuncs.com/tiaoji/chuo.gif'
+		const zxImg = 'https://kaoyancun.oss-cn-hangzhou.aliyuncs.com/img/yjh.png'
+		const zxVisible = ref<boolean>(false)
 
 		const fileList = ref<string[]>([])
 		const fileUploadList = ref<string[]>([])
@@ -63,22 +65,22 @@ const MyContent = defineComponent({
 			}
 		}
 
-		const unlock = () => {
+		const unlock = async () => {
 			const examineType = Taro.getStorageSync('examineType')
 
 			if (examineType === '') {
 				if (fileUploadList.value.length !== 2) {
 					useToast('必须上传两张图片')
 				} else {
-					insterAddHandle()
-					getImg()
+					await insterAddHandle()
+					await judge()
+					await getImg()
 
-					Taro.navigateBack({
-						delta: 1
-					})
+					zxVisible.value = true
 				}
 			} else {
 				useToast('您已上传成功，请等待审核消息')
+				zxVisible.value = true
 			}
 		}
 
@@ -142,6 +144,7 @@ const MyContent = defineComponent({
 			const res = await backPicture(Taro.getStorageSync('openId'))
 
 			if (res.code === 200) {
+				fileList.value = []
 				res.data[0].imageUrls?.map(img => {
 					fileList.value.push(img)
 					switchLength()
@@ -155,7 +158,7 @@ const MyContent = defineComponent({
 
 		return () => (
 			<view class={ styles.contentContain }>
-				<view class={ styles.noShare }>
+				<view class={ styles.noShare } onClick={ () => zxVisible.value = true }>
 					不想分享？购买一站通会员
 					<img src={ gif } alt="gif" class={ styles.gif }/>
 				</view>
@@ -203,11 +206,26 @@ const MyContent = defineComponent({
 									})
 								}
 							</view>
-						</view>
 
+						</view>
 						<nut-button type="primary" block onClick={ unlock }>立即解锁</nut-button>
 					</view>
 				</view>
+
+				<nut-popup
+					position="bottom"
+					style={{'height': '30%'}}
+					visible={zxVisible.value}
+					close-on-click-overlay={true}
+					onClickOverlay = {() => zxVisible.value = false}
+				>
+					<view class={styles.zxPopup}>
+						<view class={styles.zxTitle}>
+							您可长按识别右侧二维码 实时了解审核状态
+						</view>
+						<image src={zxImg} mode="widthFix" showMenuByLongpress={true} class={styles.zxImg}></image>
+					</view>
+				</nut-popup>
 			</view>
 		)
 	}

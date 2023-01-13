@@ -60,7 +60,7 @@ const queryAdjustChartData = async () => {
 
 				collegeOption.value = {
 					title: {
-						text: `全国一共有 ${ collegeCount.value ? collegeCount.value : 0 } + 所院校参与复试`,
+						text: `一共有 ${ collegeCount.value ? collegeCount.value : 0 } + 条院校复试数据`,
 						left: 'center'
 					},
 					tooltip: {
@@ -101,7 +101,7 @@ const queryAdjustChartData = async () => {
 
 			majorOption.value = {
 				title: {
-					text: `全国一共有 ${ majorDataCount.value ? majorDataCount.value : 0  } + 专业参与复试`,
+					text: `一共有 ${ majorDataCount.value ? majorDataCount.value : 0  } + 条专业复试数据`,
 					left: 'center'
 				},
 				tooltip: {

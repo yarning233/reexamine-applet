@@ -8,7 +8,8 @@ import { ResultType } from "../../types/adjust"
 import ResultList from "../../components/result-list"
 import { queryCollegeList } from '../../api/adjust'
 import useToast from "../../utils/useToast"
-import judge from "../../hooks/useJudge"
+// import judge from "../../hooks/useJudge"
+import { years } from '../../hooks/useYears'
 
 const Result = defineComponent({
 	components: { ResultList },
@@ -20,7 +21,6 @@ const Result = defineComponent({
 		})
 
 		const keyWord = ref<string>('')
-		const years = ref<string[]>(['2023','2022', '2021', '2020', '2019', '2018'])
 		const currentPage = ref<number>(0)
 		const pageSize = ref<number>(10)
 
@@ -72,15 +72,26 @@ const Result = defineComponent({
 		}
 
 		onMounted(async () => {
-			await judge()
-			const examineType = Taro.getStorageSync('examineType')
+			// await judge()
+			// const examineType = Taro.getStorageSync('examineType')
 
-			if (examineType === '0' || examineType === '2' || examineType === '') {
-				useToast('您尚未解锁全站会员')
+			// if (examineType === '0' || examineType === '2' || examineType === '') {
+			// 	useToast('您尚未解锁全站会员')
+
+			// 	dialogVisible.value = true
+			// } else {
+			// 	customLoadMore()
+			// }
+
+			const openId = Taro.getStorageSync('openId')
+			const phone = Taro.getStorageSync('phone')
+
+			if (openId  && phone) {
+				await customLoadMore()
+			} else {
+				useToast('您尚未授权个人信息')
 
 				dialogVisible.value = true
-			} else {
-				customLoadMore()
 			}
 		})
 
@@ -117,7 +128,8 @@ const Result = defineComponent({
 				<nut-dialog
 					teleport="#app"
 					title="提示"
-					content="您尚未解锁全站会员，请解锁后再进行使用"
+					// content="您尚未解锁全站会员，请解锁后再进行使用"
+					content="您尚未授权个人信息，请授权后再进行使用"
 					visible={ dialogVisible.value }
 					noCancelBtn={ true }
 					onOk={ dialogOk }

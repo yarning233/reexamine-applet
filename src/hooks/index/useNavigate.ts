@@ -2,40 +2,56 @@ import useToast from "../../utils/useToast"
 import Taro from '@tarojs/taro'
 import { judgeUserInfo } from './useState'
 
-const goCollegePage = () => {
-	const examineType = Taro.getStorageSync('examineType')
+const judgeOpenIdAndPhone = (dir: string) => {
+	const openId = Taro.getStorageSync('openId')
+	const phone = Taro.getStorageSync('phone')
 
-	if (examineType === '0' || examineType === '2' || !examineType) {
-		useToast('您尚未解锁全站会员')
-	} else {
+	if (openId && phone) {
 		Taro.navigateTo({
-			url: '/pages/college/index'
+			url: `/pages/${dir}/index`
 		})
+	} else {
+		useToast('您尚未授权个人信息')
 	}
+}
+
+const goCollegePage = () => {
+	// const examineType = Taro.getStorageSync('examineType')
+
+	// if (examineType === '0' || examineType === '2' || !examineType) {
+	// 	useToast('您尚未解锁全站会员')
+	// } else {
+	// 	Taro.navigateTo({
+	// 		url: '/pages/college/index'
+	// 	})
+	// }
+	judgeOpenIdAndPhone('college')
 }
 
 const goCategoryPage = () => {
-	const examineType = Taro.getStorageSync('examineType')
+	// const examineType = Taro.getStorageSync('examineType')
 
-	if (examineType === '0' || examineType === '2' || !examineType) {
-		useToast('您尚未解锁全站会员')
-	} else {
-		Taro.navigateTo({
-			url: '/pages/category/index'
-		})
-	}
+	// if (examineType === '0' || examineType === '2' || !examineType) {
+	// 	useToast('您尚未解锁全站会员')
+	// } else {
+	// 	Taro.navigateTo({
+	// 		url: '/pages/category/index'
+	// 	})
+	// }
+	judgeOpenIdAndPhone('category')
 }
 
 const goSearchResultPage = () => {
-	const examineType = Taro.getStorageSync('examineType')
+	// const examineType = Taro.getStorageSync('examineType')
 
-	if (examineType === '0' || examineType === '2' || !examineType) {
-		useToast('您尚未解锁全站会员')
-	} else {
-		Taro.switchTab({
-			url: '/pages/result/index'
-		})
-	}
+	// if (examineType === '0' || examineType === '2' || !examineType) {
+	// 	useToast('您尚未解锁全站会员')
+	// } else {
+	// 	Taro.switchTab({
+	// 		url: '/pages/result/index'
+	// 	})
+	// }
+	judgeOpenIdAndPhone('result')
 }
 
 const goMyContentPage = () => {

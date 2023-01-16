@@ -4,14 +4,14 @@ import Taro from '@tarojs/taro'
 import styles from './index.module.scss'
 import DataChart from "../../components/data-chart"
 import ECanvas from '../../components/ec-canvas/index'
-import judge from './../../hooks/useJudge'
+// import judge from './../../hooks/useJudge'
 import { state, authState, getUserProfile, getPhoneNumber } from '../../hooks/index/useState'
 import { years } from '../../hooks/useYears'
 import {
 	goCollegePage,
 	goCategoryPage,
 	goSearchResultPage,
-	goMyContentPage,
+	// goMyContentPage,
 	goAdvancePage
 } from '../../hooks/index/useNavigate'
 import {
@@ -47,7 +47,7 @@ export default {
 			Promise.all([
 				queryAdjustChartData(),
 				queryScoreLine(),
-				judge()
+				// judge()
 			])
 		})
 
@@ -64,8 +64,8 @@ export default {
 							<nut-button type="primary" onClick={ getUserProfile }>授权个人信息免费解锁</nut-button> :
 						!authState.phone ?
 							<nut-button type="primary" openType="getPhoneNumber" onGetphonenumber={ getPhoneNumber }>授权手机号免费解锁</nut-button> :
-						Taro.getStorageSync('examineType') !== '1' ?
-							<nut-button type="primary" onClick={ goMyContentPage }>免费解锁</nut-button> :
+						// Taro.getStorageSync('examineType') !== '1' ?
+						// 	<nut-button type="primary" onClick={ goMyContentPage }>免费解锁</nut-button> :
 							<nut-button type="primary">您已解锁</nut-button>
 					}
 				</view>

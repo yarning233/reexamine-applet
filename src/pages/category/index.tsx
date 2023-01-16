@@ -8,6 +8,7 @@ import { ResultType } from "../../types/adjust"
 import ResultList from "../../components/result-list"
 import {queryCollegeList, searchDiscipline} from "../../api/adjust"
 import { FirstLevelType } from '../../types/adjust'
+import { years } from '../../hooks/useYears'
 
 const Category = defineComponent({
 	components: { ResultList },
@@ -18,7 +19,6 @@ const Category = defineComponent({
 			tab11value: '0'
 		})
 		const keyWord = ref<string>('')
-		const years = ref<string[]>(['2023','2022', '2021', '2020', '2019', '2018'])
 
 		const customList = ref<ResultType[]>([])
 

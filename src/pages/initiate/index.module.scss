@@ -1,0 +1,27 @@
+.contain {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: url('https://kaoyancun.oss-cn-hangzhou.aliyuncs.com/mini/mini-start.jpg') no-repeat #000;
+  background-size: cover;
+  z-index: -1;
+}
+
+.close {
+  position: fixed;
+  right: 5px;
+  top: 20px;
+  display: flex;
+  width: 80px;
+  height: 30px;
+  padding: 5px 20px;
+  box-sizing: border-box;
+  color: #fff;
+  background-color: rgba(0,0,0,.3);
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid rgba(0,0,0,.6);
+  border-radius: 25px;
+}

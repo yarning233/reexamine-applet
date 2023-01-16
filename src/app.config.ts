@@ -1,5 +1,6 @@
 export default defineAppConfig({
   pages: [
+    'pages/initiate/index',
     'pages/index/index',
     'pages/result/index',
     'pages/college/index',

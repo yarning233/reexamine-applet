@@ -6,6 +6,7 @@ import styles from '../result/index.module.scss'
 import { ResultType } from "../../types/adjust"
 import ResultList from "../../components/result-list"
 import { queryCollegeList } from "../../api/adjust"
+import { years } from '../../hooks/useYears'
 
 const College = defineComponent({
 	components: { ResultList },
@@ -17,7 +18,6 @@ const College = defineComponent({
 		})
 
 		const keyWord = ref<string>('')
-		const years = ref<string[]>(['2023','2022', '2021', '2020', '2019', '2018'])
 
 		const customList = ref<ResultType[]>([])
 

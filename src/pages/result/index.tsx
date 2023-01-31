@@ -2,12 +2,10 @@
 import { defineComponent, ref, reactive, watch, onMounted } from 'vue'
 // @ts-ignore
 import type { Ref } from 'vue'
-import Taro from '@tarojs/taro'
 import styles from './index.module.scss'
 import { ResultType } from "../../types/adjust"
 import ResultList from "../../components/result-list"
 import { queryCollegeList } from '../../api/adjust'
-import useToast from "../../utils/useToast"
 import { years } from '../../hooks/useYears'
 import AuthPopup from '../../components/auth-popup'
 

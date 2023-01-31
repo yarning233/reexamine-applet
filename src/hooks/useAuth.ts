@@ -36,6 +36,7 @@ export const useAuth = (state: AuthType) => {
 					judge()
 
 					// 将遮罩层状态取反
+					state.dialogVisible = !state.dialogVisible
 					state.overlayShow = !state.overlayShow
 				}
 			}

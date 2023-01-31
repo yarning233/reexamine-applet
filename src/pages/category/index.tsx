@@ -9,9 +9,10 @@ import ResultList from "../../components/result-list"
 import {queryCollegeList, searchDiscipline} from "../../api/adjust"
 import { FirstLevelType } from '../../types/adjust'
 import { years } from '../../hooks/useYears'
+import AuthPopup from '../../components/auth-popup'
 
 const Category = defineComponent({
-	components: { ResultList },
+	components: { ResultList, AuthPopup },
 	setup() {
 		const state = reactive<{
 			tab11value: string
@@ -241,6 +242,8 @@ const Category = defineComponent({
 						</ul>
 					</view>
 				</view>
+
+				<AuthPopup />
 			</view>
 		)
 	}

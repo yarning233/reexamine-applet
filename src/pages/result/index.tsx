@@ -8,11 +8,11 @@ import { ResultType } from "../../types/adjust"
 import ResultList from "../../components/result-list"
 import { queryCollegeList } from '../../api/adjust'
 import useToast from "../../utils/useToast"
-// import judge from "../../hooks/useJudge"
 import { years } from '../../hooks/useYears'
+import AuthPopup from '../../components/auth-popup'
 
 const Result = defineComponent({
-	components: { ResultList },
+	components: { ResultList, AuthPopup },
 	setup() {
 		const state = reactive<{
 			tab11value: string
@@ -42,14 +42,6 @@ const Result = defineComponent({
 
 		const customHasMore = ref<boolean>(true)
 
-		const dialogVisible = ref<boolean>(false)
-
-		const dialogOk = () => {
-			Taro.switchTab({
-				url: '/pages/index/index'
-			})
-		}
-
 		const customLoadMore = async (done?: Function) => {
 			const res = await queryCollegeList({
 				year: years.value[state.tab11value],
@@ -72,27 +64,7 @@ const Result = defineComponent({
 		}
 
 		onMounted(async () => {
-			// await judge()
-			// const examineType = Taro.getStorageSync('examineType')
-
-			// if (examineType === '0' || examineType === '2' || examineType === '') {
-			// 	useToast('您尚未解锁全站会员')
-
-			// 	dialogVisible.value = true
-			// } else {
-			// 	customLoadMore()
-			// }
-
-			const openId = Taro.getStorageSync('openId')
-			const phone = Taro.getStorageSync('phone')
-
-			if (openId  && phone) {
-				await customLoadMore()
-			} else {
-				useToast('您尚未授权个人信息')
-
-				dialogVisible.value = true
-			}
+			await customLoadMore()
 		})
 
 		return () => (
@@ -124,17 +96,8 @@ const Result = defineComponent({
 						</ul>
 					</view>
 				</view>
-
-				<nut-dialog
-					teleport="#app"
-					title="提示"
-					// content="您尚未解锁全站会员，请解锁后再进行使用"
-					content="您尚未授权个人信息，请授权后再进行使用"
-					visible={ dialogVisible.value }
-					noCancelBtn={ true }
-					onOk={ dialogOk }
-				>
-				</nut-dialog>
+				
+				<AuthPopup />
 			</view>
 		)
 	}

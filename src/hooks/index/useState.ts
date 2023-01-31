@@ -20,7 +20,8 @@ const authState = reactive<AuthType>({
 	nickName: Taro.getStorageSync('nickName'),
 	openId: Taro.getStorageSync('openId'),
 	phone: Taro.getStorageSync('phone'),
-	overlayShow: false
+	overlayShow: false,
+	dialogVisible: false
 })
 
 const {

@@ -4,5 +4,6 @@ export interface AuthType {
 	nickName?: string,
 	openId?: string,
 	overlayShow: boolean,
+	dialogVisible?: boolean,
 	phone?: string
 }

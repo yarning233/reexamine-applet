@@ -39,13 +39,13 @@ export default defineAppConfig({
         iconPath: './assets/images/college.png',
         selectedIconPath: './assets/images/college-active.png',
         text: '发现'
-      },
-      {
-        pagePath: 'pages/my/index',
-        iconPath: './assets/images/me.png',
-        selectedIconPath: './assets/images/me-active.png',
-        text: '我的'
       }
+      // {
+      //   pagePath: 'pages/my/index',
+      //   iconPath: './assets/images/me.png',
+      //   selectedIconPath: './assets/images/me-active.png',
+      //   text: '我的'
+      // }
     ]
   }
 })

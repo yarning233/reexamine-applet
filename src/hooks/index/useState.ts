@@ -9,9 +9,9 @@ const state = reactive<{
 	currentYear: string,
 	pieChartType: string
 }>({
-	tab11value: '1',
-	currentYear: '2022',
-	pieChartType: '0'
+	tab11value: '2',
+	currentYear: '2021',
+	pieChartType: '1'
 })
 
 const authState = reactive<AuthType>({

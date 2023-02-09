@@ -9,7 +9,7 @@ const Initiate = defineComponent({
 
 		const goIndex = () => {
 			Taro.switchTab({
-				url: '/pages/index/index'
+				url: '/pages/advance/index'
 			})
 		}
 

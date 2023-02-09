@@ -8,7 +8,7 @@ const Initiate = defineComponent({
 		const second = ref<number>(5)
 
 		const goIndex = () => {
-			Taro.switchTab({
+			Taro.navigateTo({
 				url: '/pages/advance/index'
 			})
 		}

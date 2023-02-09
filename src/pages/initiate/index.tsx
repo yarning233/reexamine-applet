@@ -8,6 +8,12 @@ const Initiate = defineComponent({
 		const second = ref<number>(5)
 
 		const goIndex = () => {
+			Taro.switchTab({
+				url: '/pages/index/index'
+			})
+		}
+
+		const goAdvancePage= () => {
 			Taro.navigateTo({
 				url: '/pages/advance/index'
 			})
@@ -25,7 +31,7 @@ const Initiate = defineComponent({
 		})
 
 		return () => (
-			<view class={ styles.contain }>
+			<view class={ styles.contain } onClick={ goAdvancePage }>
 				<view class={ styles.close } onClick={ goIndex }>
 					{ second.value }S
 					<nut-icon name="close" size={'12px'}></nut-icon>

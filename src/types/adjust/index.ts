@@ -30,8 +30,8 @@ export interface ResultType {
 }
 
 export interface FirstLevelType {
-	firstLevelDiscipline: string,
-	firstLevelName: string
+	firstlevelDiscipline: string,
+	firstlevelName: string
 }
 
 export interface CategoryType {

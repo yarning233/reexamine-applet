@@ -17,7 +17,7 @@ const Category = defineComponent({
 		const state = reactive<{
 			tab11value: string
 		}>({
-			tab11value: '0'
+			tab11value: '1'
 		})
 		const keyWord = ref<string>('')
 
@@ -103,8 +103,8 @@ const Category = defineComponent({
 				if (res.code === 200) {
 					firstLevels.value = res.data.map( item => {
 						return {
-							firstLevelDiscipline: item.firstLevelDiscipline,
-							firstLevelName: item.firstLevelName
+							firstlevelDiscipline: item.firstlevelDiscipline,
+							firstlevelName: item.firstlevelName
 						}
 					})
 				}
@@ -218,7 +218,7 @@ const Category = defineComponent({
 							                   class={styles.checkboxGroup} onChange={ resetChange }>
 								{
 									firstLevels.value.map(pro => {
-										return <nut-checkbox label={pro.firstLevelDiscipline} class={styles.checkbox}>{pro.firstLevelName}</nut-checkbox>
+										return <nut-checkbox label={pro.firstlevelDiscipline} class={styles.checkbox}>{pro.firstlevelName}</nut-checkbox>
 									})
 								}
 							</nut-checkboxgroup>
